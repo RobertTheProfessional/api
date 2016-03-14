@@ -1,6 +1,12 @@
+var tape = require('tape'),
+    diff = require('difflet')({ indent : 2, comment : true });
 
-var tape = require('tape');
-var common = {};
+var common = {
+  // a visual deep diff rendered using console.error()
+  diff: function( actual, expected ){
+    console.error( diff.compare( actual, expected ) );
+  }
+};
 
 var tests = [
   require('./controller/index'),
@@ -39,6 +45,7 @@ var tests = [
   require('./sanitiser/_sources'),
   require('./sanitiser/_sources_and_layers'),
   require('./sanitiser/_text'),
+  require('./src/backend'),
   require('./sanitiser/autocomplete'),
   require('./sanitiser/place'),
   require('./sanitiser/reverse'),
