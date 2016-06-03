@@ -43,6 +43,7 @@ query.score( peliasQuery.view.admin_multi_match(adminFields, 'peliasAdmin') );
 query.filter( peliasQuery.view.boundary_circle );
 query.filter( peliasQuery.view.boundary_rect );
 query.filter( peliasQuery.view.sources );
+query.filter( peliasQuery.view.categories );
 // --------------------------------
 
 /**
@@ -58,6 +59,11 @@ function generateQuery( clean ){
 
   // sources
   vs.var( 'sources', clean.sources);
+
+  // categories
+  if (clean.categories) {
+    vs.var('input:categories', clean.categories);
+  }
 
   // size
   if( clean.querySize ) {
